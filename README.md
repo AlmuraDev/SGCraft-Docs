@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://almuradev.github.io/SGCraft-Docs/">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://almuradev.github.io/SGCraft-Docs/logo.svg">
-      <img src="https://almuradev.github.io/SGCraft-Docs/logo-light.svg" alt="SGCraft Remake 3.0" width="480">
+      <source media="(prefers-color-scheme: dark)" srcset="wiki/assets/logo.svg">
+      <img src="wiki/assets/logo-light.svg" alt="SGCraft Remake 3.0" width="480">
     </picture>
   </a>
 </p>

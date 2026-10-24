@@ -16,7 +16,6 @@ With --strict, a build with warnings fails, as the GitHub Pages workflow runs it
 Needs Pillow.
 """
 
-import base64
 import html
 import json
 import re
@@ -41,8 +40,6 @@ SOURCE = Path('wiki')
 OUT = Path('build/wiki')
 FONTS = MOD / 'core/src/main/resources/assets/sgcraft/textures/font'
 RECIPES = MOD / 'core/src/main/resources/data'
-# The fonts the logo's words are set in, which the workflow fetches here; the logo files that stand alone carry them
-LOGO_FONTS = {'Michroma': Path('build/fonts/Michroma.ttf'), 'Orbitron': Path('build/fonts/Orbitron.ttf')}
 # The icons and names the wiki keeps, and where the icon export saves every item's
 ICONS = SOURCE / 'icons'
 EXPORTED = MOD / 'build/icons'
@@ -89,7 +86,7 @@ def asset(path):
 
 
 def cut_glyphs():
-    """Writes each glyph style's glyphs as one tinted image per character, and the logo's glyphs in chevron orange."""
+    """Writes each glyph style's glyphs as one tinted image per character, and in chevron orange for the site's icon."""
     for style, color in GLYPH_STYLES.items():
         font = Image.open(FONTS / f'glyphs_{style}.png').convert('RGBA')
         for tint, folder in ((color, OUT / 'glyphs' / style), (LOGO_COLOR, OUT / 'glyphs' / f'{style}-logo')):
@@ -605,51 +602,6 @@ def describe(markdown):
     return meta
 
 
-def logo(href=None, ink='#e9eef5', faint='#8fa3bb', style=''):
-    """The SGCraft 3.0 logo: a gate ring beside the wordmark, and REMAKE in Milky Way glyphs around the point of
-    origin, seven symbols as a gate's address has. Its glyphs are found by href, from their paths in the site, and its
-    words drawn in ink, the smaller in faint; style, if any, makes it a file that stands alone."""
-    href = href or asset
-    chevrons = ''.join(f'<path d="M-9 -130 L9 -130 L4 -110 L-4 -110 Z" transform="rotate({a})"/>'
-                       for a in (0, 40, 80, 120, -40, -80, -120))
-    remake = []
-    for i, char in enumerate('REM@AKE'):
-        x = 376 + 42 * i
-        if char == '@':
-            remake.append(f'<image x="{x - 3}" y="193" width="40" height="40" '
-                          f'href="{href("glyphs/milkyway/origin.png")}"/>')
-        else:
-            remake.append(f'<image x="{x}" y="196" width="34" height="34" '
-                          f'href="{href(f"glyphs/milkyway-logo/{char}.png")}"/>')
-    remake = ''.join(remake)
-    standalone = ' xmlns="http://www.w3.org/2000/svg"' if style else ''
-    return f'''<svg class="logo"{standalone} viewBox="80 14 600 290" role="img" aria-label="SGCraft Remake 3.0">{style}
-<g transform="translate(250 165)">
-<circle r="116" fill="none" stroke="#3a4250" stroke-width="22"/>
-<circle r="116" fill="none" stroke="#5b6574" stroke-width="2" stroke-dasharray="4 10"/>
-<circle r="102" fill="#0d3b66"/><circle r="78" fill="#1565a8"/><circle r="50" fill="#3d8fd6"/>
-<circle r="24" fill="#9ccbf2"/><g fill="#e8892b">{chevrons}</g></g>
-<text x="519" y="168" text-anchor="middle" font-family="Michroma, sans-serif" font-size="43" fill="{ink}"
-letter-spacing="5">SGCRAFT</text>
-<rect x="371" y="184" width="296" height="2" fill="#e8892b"/>{remake}
-<text x="519" y="262" text-anchor="middle" font-family="Orbitron, sans-serif" font-size="13" fill="{faint}"
-letter-spacing="8">REMAKE · 3.0</text></svg>'''
-
-
-def write_logos():
-    """Writes the logo as files that stand alone, for pages elsewhere, such as SGCraft's README, to show: its glyphs
-    and fonts written into it, as a picture shown that way can't load them, one lettered light for a dark page and
-    one lettered dark for a light page. Without the fonts the workflow fetches, its words fall back to plain ones."""
-    def embed(path):
-        return 'data:image/png;base64,' + base64.b64encode((OUT / path).read_bytes()).decode()
-    faces = ''.join(f'@font-face{{font-family:{family};src:url(data:font/ttf;base64,'
-                    f'{base64.b64encode(file.read_bytes()).decode()})}}'
-                    for family, file in LOGO_FONTS.items() if file.exists())
-    style = f'<style>{faces}</style>' if faces else '<style></style>'
-    for name, ink, faint in (('logo.svg', '#e9eef5', '#8fa3bb'), ('logo-light.svg', '#1d2633', '#4f6178')):
-        (OUT / name).write_text(logo(embed, ink, faint, style), encoding='utf-8', newline='\n')
-
-
 def search_index():
     """Every page's title, link and section, for the search box."""
     section = {}
@@ -710,7 +662,7 @@ def page(name, title, summary, body, headings, pages):
 <link rel="stylesheet" href="{asset("wiki.css")}">
 </head>
 <body>
-<header class="masthead"><a class="brand" href="{asset("home.html")}">{logo()}</a>
+<header class="masthead"><a class="brand" href="{asset("home.html")}"><img class="logo" src="{asset("assets/logo.svg")}" alt="SGCraft Remake 3.0"></a>
 <div class="masthead-text"><div class="wiki-name">SGCraft Wiki</div>
 <div class="search-box"><input class="search" type="search" placeholder="Search the wiki" aria-label="Search the wiki">
 <ul class="search-results" hidden></ul></div></div></header>
@@ -868,7 +820,6 @@ def main():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
     cut_glyphs()
-    write_logos()
     shutil.copy(Path(__file__).with_name('wiki.css'), OUT / 'wiki.css')
     for folder in ('assets', 'icons', 'scenes'):
         if (SOURCE / folder).exists():
