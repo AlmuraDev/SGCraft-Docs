@@ -5,6 +5,7 @@ Every item SGCraft adds, each with a page of its own: how to get it, what it doe
 ```index
 items
 +entities/malp
++entities/puddle-jumper
 ```
 
 Everything is in the SGCraft creative tab, with a full battery after the empty one.

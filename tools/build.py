@@ -62,7 +62,7 @@ LOGO_COLOR = 'e8892b'
 # The sidebar, in order: each section's title and its pages. Pages not listed still build, under "More"
 NAV = [
     ('Start here', ['home', 'install', 'getting-started', 'what-to-aim-for', 'faq', 'changes']),
-    ('Playing', ['building-gates', 'dialing', 'addresses', 'dhd', 'iris', 'power', 'access', 'tools', 'malp',
+    ('Playing', ['building-gates', 'dialing', 'addresses', 'dhd', 'iris', 'power', 'access', 'tools', 'malp', 'puddle-jumper',
                  'worldgen']),
     ('Dictionary', ['blocks', 'items', 'entities', 'recipes']),
     ('Server admins', ['settings', 'commands']),
@@ -72,7 +72,7 @@ NAV = [
 # The dictionary's folders; each has an index page of the same name at the top of the wiki
 DICTIONARY = ['blocks', 'items', 'entities']
 # The order the dictionary's indexes and the recipes page group their pages in, by each page's Category
-CATEGORIES = ['Gate blocks', 'DHDs', 'Materials', 'Upgrades', 'Tools', 'Power', 'MALP', 'Villagers',
+CATEGORIES = ['Gate blocks', 'DHDs', 'Materials', 'Upgrades', 'Tools', 'Power', 'MALP', 'Vehicles', 'Villagers',
               'Creative only', 'Technical']
 
 # Set while a page renders: the page's name, and the path back to the top of the site from its folder

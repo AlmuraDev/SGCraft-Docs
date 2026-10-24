@@ -39,6 +39,7 @@ Keep a record of the addresses you find. Read each one from the gate's screen an
 | Craft a PDD | Dials from your hand, with no DHD | [Tools](tools.md) |
 | Build a dialing computer | Dials from a keyboard and keeps a dialing history | [Dialing computer](blocks/dialing-computer.md) |
 | Build a MALP | Sends a probe through to look before you step | [MALP](malp.md) |
+| Craft a puddle jumper | A ship that seats ten and flies through a gate | [Puddle jumper](puddle-jumper.md) |
 
 ## Late game
 

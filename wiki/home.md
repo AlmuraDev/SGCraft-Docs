@@ -39,6 +39,7 @@ If you are coming from SGCraft 2 on Minecraft 1.12, [Changes since SGCraft 2](ch
 - [Tools](tools.md): the PDD, the gate control tablet, the GDO and the configurator.
 - [World generation](worldgen.md): naquadah ore, gates in structures, the Tok'ra and chest loot.
 - [The MALP](malp.md): the remote probe, its console, tablet and battery.
+- [The puddle jumper](puddle-jumper.md): the ship you fly through a gate, its keys, display and drones.
 
 ## Dictionary
 
