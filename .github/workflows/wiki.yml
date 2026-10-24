@@ -42,6 +42,13 @@ jobs:
         with:
           python-version: '3.13'
       - run: pip install Pillow
+      # The logo's fonts, written into the logo files other pages show; without them the build still goes on
+      - name: Fetch the logo's fonts
+        continue-on-error: true
+        run: |
+          mkdir -p build/fonts
+          curl -fsSL -o build/fonts/Michroma.ttf https://raw.githubusercontent.com/google/fonts/main/ofl/michroma/Michroma-Regular.ttf
+          curl -fsSL -o build/fonts/Orbitron.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/orbitron/Orbitron%5Bwght%5D.ttf"
       - run: python tools/build.py --mod sgcraft --strict
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
