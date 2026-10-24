@@ -1,0 +1,59 @@
+# Builds the wiki and publishes it with GitHub Pages: whenever SGCraft's remake branch gets a commit, which SGCraft's
+# own Docs workflow announces here with a repository dispatch carrying the commit; whenever the wiki here changes; and
+# by hand. The wiki draws the mod's glyph fonts and recipes from a checkout of SGCraft at that commit
+name: Wiki
+
+on:
+  repository_dispatch:
+    types: [sgcraft-push]
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: SGCraft commit or branch to build from
+        required: false
+        default: remake/26.3
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One publish at a time; a newer one waits rather than cancels one under way
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: AlmuraDev/SGCraft
+          ref: ${{ github.event.client_payload.sha || inputs.ref || 'remake/26.3' }}
+          path: sgcraft
+          sparse-checkout: |
+            core/src/main/resources/assets/sgcraft/textures/font
+            core/src/main/resources/data
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install Pillow
+      - run: python tools/build.py --mod sgcraft --strict
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/wiki
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
