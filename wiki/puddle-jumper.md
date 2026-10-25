@@ -1,6 +1,6 @@
 # Puddle jumper
 
-The puddle jumper is a small ship that flies through a stargate with its crew aboard. It seats ten, hovers on a drive you switch on and off, carries six homing drones, and has its own dialing computer, so a crew can dial out, fly through and keep going on the far side.
+The puddle jumper is a small ship that flies through a stargate with its crew aboard. It seats ten, hovers on a drive you switch on and off, carries six homing drones, runs a shield or a cloak, and has its own dialing computer, so a crew can dial out, fly through and keep going on the far side.
 
 ```infobox
 Puddle jumper
@@ -13,6 +13,7 @@ Size: 2.75 wide, 2.5 tall, 7 long
 Seats: 10 players
 Speed: 11 m/s, 40 m/s with turbo
 Weapons: 6 drones
+Defense: Shield or cloak, one at a time
 Recipe: [Crafting](#crafting)
 Dictionary: [Puddle jumper](entities/puddle-jumper.md)
 ```
@@ -21,9 +22,9 @@ Dictionary: [Puddle jumper](entities/puddle-jumper.md)
 
 A jumper is a vehicle, like a boat or a minecart, that flies. Its hitbox is as wide and tall as a gate's opening, 2.75 by 2.5 blocks, so it fits through a standard gate. It is 7 blocks long, and the whole length collides with blocks. It can't step up onto anything.
 
-It has no fuel and no energy use. Its drive is a switch, on or off. With the drive on, it hangs where it is and flies where you steer it. With the drive off, it falls like anything else.
+The drive has no fuel and no energy use. It is a switch, on or off. With the drive on, it hangs where it is and flies where you steer it. With the drive off, it falls like anything else.
 
-Anyone can board, fly, pick up or rename a jumper. It has no owner and no access rules, and it has no settings or commands.
+Anyone can board, fly, pick up or rename a jumper. It has no owner and no access rules. Server admins can change how its shield, cloak, crashes and drones work, and work one with `/sgcraft jumper`. See [Settings and commands](#settings-and-commands).
 
 ## Crafting
 
@@ -50,7 +51,7 @@ A jumper has ten seats, all for players.
 | Cabin | Six bench seats along the aisle | Passengers |
 
 - Use a jumper from outside to lower or raise its cargo door. Walk up the ramp and you are inside. You can walk around in the hull.
-- Standing inside, use the seat you look at to sit in it. Use it while looking at the back of the cabin to work the door. While seated, look at a free seat and use it to move there.
+- Standing inside, use the seat you look at to sit in it, from anywhere in the cabin. Use it while looking at the back of the cabin to work the door. The whole hull can be aimed at and used, not only its hitbox. While seated, look at a free seat and use it to move there.
 - Riders who get out keep their seat for as long as nobody else takes it. They lose it if they go more than 8 blocks away.
 - You can only get up while the jumper stands still. Otherwise you are told to wait until it stops. You stand up beside your seat.
 - Anyone still standing inside when it moves is put in a free seat, or out of the back, side or roof if none is free.
@@ -61,7 +62,7 @@ A jumper has ten seats, all for players.
 
 Only the person in the helm seat flies. Their own game moves the jumper, much like a boat, and everyone else sees it glide.
 
-1. Press the **O** key, or click the POWER button on the dashboard, to switch the drive on. The hull hums.
+1. Press the **I** key, or click the POWER button on the dashboard, to switch the drive on. The hull hums.
 2. Raise the cargo door if it is down. The jumper won't fly with its door open.
 3. Fly.
 
@@ -79,7 +80,7 @@ With no keys held, it coasts to a stop in about 4 seconds, and it keeps 85 perce
 
 ### Drive pods
 
-The two drive pods fold out when the jumper is in the air, and turbo needs them out. They fold in by themselves within 12 blocks of a connected gate, so the jumper clears the opening. Press **R** to fold them out or in yourself. Your choice stays until you use turbo.
+The two drive pods fold out when the jumper is in the air, and turbo needs them out. Folded, each engine stands upright against the outside of the hull's lower side. Unfolding, it rides up the side and its arm runs straight out under it. They fold in by themselves within 12 blocks of a connected gate, so the jumper clears the opening. Press **R** to fold them out or in yourself. Your choice stays until you use turbo.
 
 ### The cargo door
 
@@ -95,7 +96,7 @@ The pilot's game holds the jumper in place until the chunks at and just ahead of
 
 ## The dashboard
 
-The pilot can click the dashboard's buttons by looking at them. From right to left they are POWER, HEADLIGHTS, PODS, DOOR, WEAPONS and FRIENDLY FIRE. Every one has a key as well, below.
+The pilot can click the dashboard's buttons by looking at them. From right to left they are POWER, HEADLIGHTS, PODS, DOOR, WEAPONS, FRIENDLY FIRE, SHIELD and CLOAK. Every one has a key as well, below.
 
 ## Keys
 
@@ -103,13 +104,15 @@ All of these are set in **Options, Controls, Puddle Jumper**.
 
 | Key | Name | What it does | Who |
 | --- | --- | --- | --- |
-| **O** | Jumper Power | Drive on or off | Pilot |
+| **I** | Jumper Power | Drive on or off | Pilot |
 | **H** | Headlights | Headlights on or off, with the drive on | Pilot |
 | **R** | Toggle Drive Pods | Pods out or in | Pilot |
 | **G** | Cargo Door | Door down or up | Pilot |
 | **Left Alt** | Descend | Go down | Pilot |
 | **K** | Open Jumper Computer | The dialing computer | Pilot or co-pilot |
-| **B** | Arm Drones | Bays out or in. The drive must be on | Weapons |
+| **J** | Toggle Shield | Shield up or down | Pilot |
+| **X** | Toggle Cloak | Cloak on or off | Pilot |
+| **Y** | Arm Drones | Bays out or in. The drive must be on | Weapons |
 | **Z** | Lock Next Target | Next target in the lock | Weapons |
 | **V** | Launch Drone | Fire at the lock, or straight ahead without one | Weapons |
 | **N** | Toggle Friendly Fire | Whether drones may hit things that aren't hostile | Weapons |
@@ -127,11 +130,13 @@ The cabin is sealed. For anyone inside, the hull keeps out water, rain, snow, fi
 - Riders breathe and see clearly with no water fog, even with the ship underwater.
 - Rain and snow stop at the roof.
 - Fire and lava do no damage to riders, and fire on them goes out.
-- Mobs don't pick riders out as targets, and riders' name tags are hidden.
+- Riders' name tags are hidden.
 - Grass and flowers inside the hull aren't drawn.
 - Riders' held items aren't shown.
 
-It does not shield riders from explosions or other damage.
+Blows from outside at someone riding or standing inside, explosions included, fall on the jumper instead: on its [shield](#shield-and-cloak) if it is up, otherwise on its hull. Blows struck from inside, and damage from nowhere, such as hunger, still reach the rider. So does every blow while the cargo door is down, because the cabin is open then.
+
+Mobs may go after riders, unless the jumper is cloaked.
 
 ## The heads-up display
 
@@ -140,16 +145,40 @@ Riders see a console drawn over the game, in Atlantis blue, in place of the hotb
 - Compass tape. Along the top, 50 degrees either way, with a tick every 5 degrees and a reading such as `045° NE`.
 - Left pane, the scanner. The dimension and time of day, the biome, a round map, your coordinates, and the distance to the linked gate (`GATE 340 m`) or `NO GATE`. The map turns so ahead is always up, reaches 72 blocks, and shades the relief 32 blocks up and down. Ground that isn't loaded stays dark. The linked gate shows as a green diamond, pinned to the rim of the map when it is out of range.
 - Right pane, the instruments. A speed dial in m/s, a height dial in blocks, the height above ground (`AGL`), the climb rate, **DRIVE ON** or **DRIVE OFF**, and the drones you have left (an infinity sign in creative).
-- Lamps. PODS, TURBO, LIGHTS, DOOR, ARMED and FRIEND, each lit while that is so.
+- Lamps. PODS, TURBO, LIGHTS, DOOR, ARMED and FRIEND, each lit while that is so, and SHIELD and CLOAK. The shield's lamp is green while it is up and red while it is knocked down. The cloak's is yellow while it comes on or goes off and green once it is on.
+- Cloak generator. Under the scanner, **GEN**: a row of segments lit as far as the generator is full, and its percentage. It turns yellow below 30 percent. While the shield is knocked down it turns red, and the seconds until the shield may rise again blink in place of the percentage.
+- Your own readings. Seated, a strip over the hotbar shows your health (**HP**), food, armor and experience level in place of the game's own bars.
 - Gate marker. A diamond with its distance on the linked gate while it is on screen.
-- Key card. Bottom left, in the front seats, listing the keys that seat can use.
+- Key card. Bottom left, in the front seats, listing the keys that seat can use, with SHIELD and CLOAK for the pilot.
 - Pilot only. A flashing `DOOR DOWN, RAISE TO FLY`, `HOLDING FOR TERRAIN`, and a reticle in first person or a chevron over the nose in third.
+
+## Shield and cloak
+
+One cloak generator runs either the shield or the cloak, never both, as in the show. Raising one lowers the other. It works only with the drive on, and turning the drive off drops both. It draws on a charge of its own, which the **GEN** bar on the scanner shows, and refills while the drive is on and neither is running.
+
+Press **J**, or click SHIELD on the dashboard, to raise or lower the shield. Press **X**, or click CLOAK, to put the cloak on or take it off. If the jumper won't, it says why: "The cloak generator needs the drive on", "The cloak generator is empty" or "The shield recovers in N seconds".
+
+### The shield
+
+The shield isn't drawn as a bubble. You see it sweep across the hull as it rises or falls, and a patch flash and ripple out where a blow lands. Each blow it stops costs energy, in proportion to the damage. A blow it can't pay for gets through to the hull, and the shield falls with a flare across it and stays down for a while. It also drains a little every tick while it is up, hit or not, and falls the same way if that empties the generator.
+
+### The cloak
+
+The cloak hides the jumper, and everyone in it, from anyone outside. It takes a second to come on or go off. The jumper's sounds stay, and a faint shimmer gives it away, stronger the faster it moves. Those inside still see one another, and from behind in third person they see the hull faintly. Mobs lose sight of riders while it is on. Launching a drone drops it. It drains the generator each tick, and goes off when the generator is empty.
+
+### What the defaults give
+
+A full generator stops about 80 points of damage, or holds the shield up for over three minutes if nothing hits it, or the cloak on for about 100 seconds. With nothing running it refills in about 50 seconds. A knocked down shield stays down for 10 seconds. All of these are [settings](#settings-and-commands).
+
+## Crashes
+
+A jumper that meets a block faster than 7 m/s is hurt, harder the faster it was going: 40 damage for each extra block a tick, before the hull's toughness. The shield takes the blow if it is up, and the hull if not. The limit sits just above the 6 m/s of a controlled descent, so a jumper can set down at full control. Going through a gate is never a crash.
 
 ## Weapons
 
-A jumper carries six drones, and has no way to reload them. They come back only if you pick the jumper up and put it down again.
+A jumper carries six drones. It builds each one it has launched again, one at a time, every 30 seconds by default. Picking the jumper up and putting it down also gives it all six.
 
-1. With the drive on, press **B**. The bays slide out in half a second and the jumper is armed. Switching the drive off, or landing, disarms it.
+1. With the drive on, press **Y**. The bays slide out in half a second and the jumper is armed. Switching the drive off, or landing, disarms it.
 2. The scanner marks what is in front of you. Z picks the next mark.
 3. Press **V** to launch a drone. Drones leave from the left and right bays in turn, one every 8 ticks at most.
 
@@ -193,7 +222,21 @@ See [What a shut iris does](iris.md#what-a-shut-iris-does).
 
 The jumper is a vehicle and has no hearts. Hits add to a damage count that falls by 1 a tick, and the jumper breaks when the count passes 40. It takes a fifth of the damage a boat would, and it is immune to fire.
 
-Nobody inside it can hurt it. It drops its item when it breaks, and nothing at all when a creative player hits it.
+Nobody inside it can hurt it. With its shield up, the shield takes a blow first and only what it can't stop reaches the hull. A creative player breaking it, and anything that kills outright, go through the shield. Crashes hurt it too, as [described above](#crashes). It drops its item when it breaks, and nothing at all when a creative player hits it.
+
+## Settings and commands
+
+The generator, shield, cloak, crashes and drone rebuilding are set in the `jumper` section of the server's settings, and have their own Jumper tab on the [settings screen](settings.md#the-settings-screen). See [Settings](settings.md#the-puddle-jumper).
+
+`/sgcraft jumper` works a jumper's generator without sitting at its helm. It needs permission level 2. Name the jumpers with an entity selector, such as `@e[type=sgcraft:puddle_jumper,sort=nearest,limit=1]`. Anything else the selector picks is passed over.
+
+| Command | What it does |
+| --- | --- |
+| `/sgcraft jumper status <jumpers>` | How full each generator is, whether its shield is up, down or knocked down, and whether its cloak is on |
+| `/sgcraft jumper shield <jumpers> <bool>` | Raise or lower their shields, as their pilot would |
+| `/sgcraft jumper cloak <jumpers> <bool>` | Put their cloaks on or take them off |
+| `/sgcraft jumper generator <jumpers> <ge>` | Set how much gate energy their generators hold, up to the capacity |
+| `/sgcraft jumper recover <jumpers>` | Let knocked down shields rise again at once |
 
 ## Sounds
 
@@ -206,3 +249,5 @@ The drive hums while it is on, a little louder and higher with more thrust, and 
 - [Dialing](dialing.md#the-dialing-computer)
 - [Iris](iris.md)
 - [Access rights](access.md)
+- [Settings](settings.md#the-puddle-jumper)
+- [Commands](commands.md#puddle-jumpers)

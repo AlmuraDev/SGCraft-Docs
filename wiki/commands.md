@@ -253,6 +253,20 @@ Every command here needs level 2. Name a MALP by its name or the start of its UU
 
 See [MALP](malp.md).
 
+## Puddle jumpers
+
+Every command here needs level 2. Name the jumpers with an entity selector, such as `@e[type=sgcraft:puddle_jumper,sort=nearest,limit=1]`. Anything else it picks is passed over, and a selector that picks no jumper says "No puddle jumper was picked".
+
+| Command | What it does |
+| --- | --- |
+| `/sgcraft jumper status <jumpers>` | How full each jumper's cloak generator is, and whether its shield is up, down or knocked down and its cloak on or off |
+| `/sgcraft jumper shield <jumpers> <bool>` | Raise or lower their shields, as their pilot would. A jumper that can't says why |
+| `/sgcraft jumper cloak <jumpers> <bool>` | Put their cloaks on or take them off |
+| `/sgcraft jumper generator <jumpers> <ge>` | Set how much gate energy their generators hold, up to the capacity |
+| `/sgcraft jumper recover <jumpers>` | Let knocked down shields rise again at once |
+
+See [Puddle jumper](puddle-jumper.md#settings-and-commands) and [Settings](settings.md#the-puddle-jumper).
+
 ## Server settings
 
 | Command | Level | What it does |

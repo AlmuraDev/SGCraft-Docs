@@ -42,7 +42,7 @@ A short `sgcraft-server.json` that changes a few settings and leaves the rest at
 
 ## Server settings
 
-`config/sgcraft-server.json` keeps its settings in thirteen sections: `energy`, `addresses`, `gates`, `tools`, `worldgen`, `remote_view`, `malp`, `shields`, `zpm`, `computers`, `generators`, `zat` and `rings`. A section left out takes all its defaults. In a section, a setting left out takes its default. This page names a setting by its path, such as `energy.multipliers.inter_world`. [The whole file](#the-whole-file) shows every setting at its default.
+`config/sgcraft-server.json` keeps its settings in fourteen sections: `energy`, `addresses`, `gates`, `tools`, `worldgen`, `remote_view`, `malp`, `shields`, `zpm`, `computers`, `generators`, `zat`, `rings` and `jumper`. A section left out takes all its defaults. In a section, a setting left out takes its default. This page names a setting by its path, such as `energy.multipliers.inter_world`. [The whole file](#the-whole-file) shows every setting at its default.
 
 ### Energy
 
@@ -339,6 +339,22 @@ A ZPM holds GE, which gates and city shields draw on as on any other source. The
 | `power_reach` | `6` | How far from a computer, in blocks along each axis, the power units and ZPM blocks it draws on may stand (1 to 16) |
 | `history_size` | `10` | How many of the addresses last dialed from a dialing computer its screen lists, to dial again (0 to 10, 0 keeps none) |
 
+### The puddle jumper
+
+`jumper` sets the cloak generator of the [puddle jumper](puddle-jumper.md#shield-and-cloak), its crashes and its drones. Energy amounts are in GE, and drains and rates are per tick. Only the server reads these.
+
+| Field | Default | Meaning |
+| --- | --- | --- |
+| `generator_capacity` | `2000` | The most GE a jumper's cloak generator holds (1 or more) |
+| `recharge_rate` | `2` | GE the generator gains each tick while the drive is on and neither the shield nor the cloak runs |
+| `shield_drain` | `0.5` | GE the shield uses each tick while it is up, hit or not |
+| `cloak_drain` | `1` | GE the cloak uses each tick while it is on |
+| `hit_cost` | `25` | GE the shield spends on each point of damage it stops |
+| `knockdown_ticks` | `200` | How long the shield stays down once its energy runs out, in ticks (0 to 72000) |
+| `crash_speed` | `0.35` | How fast a jumper may meet a block, in blocks a tick, before it is hurt |
+| `crash_damage` | `40` | Damage for each block a tick it goes faster than `crash_speed`, before the hull's toughness |
+| `drone_refill_ticks` | `600` | How long a jumper takes to build each launched drone again, in ticks (0 to 72000); 0 never does |
+
 ### The whole file
 
 Every server setting at its default. You never need to write all of this. Settings at their defaults can be left out.
@@ -518,6 +534,17 @@ Every server setting at its default. You never need to write all of this. Settin
     "energy_per_block": 1,
     "capacity": 50000,
     "max_distance": 2000
+  },
+  "jumper": {
+    "generator_capacity": 2000,
+    "recharge_rate": 2,
+    "shield_drain": 0.5,
+    "cloak_drain": 1,
+    "hit_cost": 25,
+    "knockdown_ticks": 200,
+    "crash_speed": 0.35,
+    "crash_damage": 40,
+    "drone_refill_ticks": 600
   }
 }
 ```
@@ -645,6 +672,7 @@ These commands change server settings at once and write them to `sgcraft-server.
 | `shields` | `/sgcraft shields` |
 | `zpm` | `/sgcraft zpm` |
 | `computers` | `/sgcraft computers` |
+| `jumper` | `/sgcraft config jumper.<key> <value>`, or the screen's Jumper tab |
 | Default addresses | `/sgcraft default_addresses` |
 
 `/sgcraft config` and the screen also change `remote_view` and `worldgen.village_gates`, but those take effect when the server next starts, as both are set up as it starts. The settings that are lists or maps, such as `worldgen.structure_gates` and other bridges' `energy.bridge_rates`, need an edit to the file and a restart. `/sgcraft worldgen always` gives every listed structure a gate until the server stops, but writes nothing to the file.
@@ -663,6 +691,7 @@ Operators see these tabs:
 | Energy | The `energy` settings and `zpm` |
 | Shields | `shields` |
 | MALP | `malp` |
+| Jumper | `jumper` |
 | Worldgen | `worldgen.naquadah_ore` and `worldgen.village_gates` |
 | Client | Your own `sgcraft-client.json` |
 

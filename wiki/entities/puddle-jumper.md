@@ -13,6 +13,7 @@ Health: Breaks when its damage passes 40 (each hit adds twice its damage, and th
 Speed: 11 m/s, 40 m/s with turbo, 4 m/s in reverse
 Seats: 10 players
 Weapons: 6 drones
+Defense: Shield or cloak, one at a time
 Stackable: No
 Power: None, the drive is a switch
 ```
@@ -29,7 +30,7 @@ sgcraft:puddle_jumper
 
 1. Use the jumper item on a block face. It goes down beside that face, facing the way you face. It won't go down where it doesn't fit, nose to tail.
 2. Use it to lower its cargo door and walk in, or use it again to raise the door.
-3. Sit at the helm, press **O** to switch the drive on, and fly. See [Flying](../puddle-jumper.md#flying).
+3. Sit at the helm, press **I** to switch the drive on, and fly. See [Flying](../puddle-jumper.md#flying).
 
 To pick it up, sneak and use it with an empty hand while nobody is aboard. A name tag renames it.
 
@@ -39,7 +40,8 @@ To pick it up, sneak and use it with an empty hand while nobody is aboard. A nam
 - It has no owner. Anyone can board, fly, pick up or rename it.
 - It goes through gates with its riders, who all need the right to use both gates. See [Through a gate](../puddle-jumper.md#through-a-gate).
 - The cabin keeps out water, rain, snow, fire and lava. See [The cabin](../puddle-jumper.md#the-cabin).
-- It takes a fifth of the damage a boat would, and nothing aboard can hurt it.
+- Its generator runs a shield or a cloak, one at a time. See [Shield and cloak](../puddle-jumper.md#shield-and-cloak).
+- It takes a fifth of the damage a boat would, and nothing aboard can hurt it. A crash hurts it too.
 
 ## Drops
 
@@ -56,4 +58,5 @@ A jumper that has been picked up or destroyed comes back with six drones and its
 - [The puddle jumper guide](../puddle-jumper.md)
 - [Keys](../puddle-jumper.md#keys)
 - [Weapons](../puddle-jumper.md#weapons)
+- [Shield and cloak](../puddle-jumper.md#shield-and-cloak)
 - [The dialing computer](../blocks/dialing-computer.md)
