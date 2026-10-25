@@ -352,7 +352,7 @@ A ZPM holds GE, which gates and city shields draw on as on any other source. The
 | `hit_cost` | `25` | GE the shield spends on each point of damage it stops |
 | `knockdown_ticks` | `200` | How long the shield stays down once its energy runs out, in ticks (0 to 72000) |
 | `crash_speed` | `0.35` | How fast a jumper may meet a block, in blocks a tick, before it is hurt |
-| `crash_damage` | `40` | Damage for each block a tick it goes faster than `crash_speed`, before the hull's toughness |
+| `crash_damage` | `40` | Damage for each block a tick it goes faster than `crash_speed`, dealt as any other hit |
 | `drone_refill_ticks` | `600` | How long a jumper takes to build each launched drone again, in ticks (0 to 72000); 0 never does |
 
 ### The whole file

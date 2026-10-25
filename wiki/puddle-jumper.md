@@ -172,7 +172,7 @@ A full generator stops about 80 points of damage, or holds the shield up for ove
 
 ## Crashes
 
-A jumper that meets a block faster than 7 m/s is hurt, harder the faster it was going: 40 damage for each extra block a tick, before the hull's toughness. The shield takes the blow if it is up, and the hull if not. The limit sits just above the 6 m/s of a controlled descent, so a jumper can set down at full control. Going through a gate is never a crash.
+A jumper that meets a block faster than 7 m/s is hurt, harder the faster it was going: it takes 40 damage for each block a tick it goes over the limit, as any other hit, so the hull's damage count rises by twice that. The shield takes the blow if it is up, at its energy cost for each point, and the hull if not. The limit sits just above the 6 m/s of a controlled descent, so a jumper can set down at full control. Going through a gate is never a crash.
 
 ## Weapons
 
@@ -220,7 +220,7 @@ See [What a shut iris does](iris.md#what-a-shut-iris-does).
 
 ## Damage
 
-The jumper is a vehicle and has no hearts. Hits add to a damage count that falls by 1 a tick, and the jumper breaks when the count passes 40. It takes a fifth of the damage a boat would, and it is immune to fire.
+The jumper is a vehicle and has no hearts. Each hit adds twice its damage to a damage count that falls by 1 a tick, and the jumper breaks when the count passes 40. A boat adds ten times the damage, so the jumper takes a fifth of what a boat would. It is immune to fire. A hit of 10 damage, such as a strong arrow volley, adds 20.
 
 Nobody inside it can hurt it. With its shield up, the shield takes a blow first and only what it can't stop reaches the hull. A creative player breaking it, and anything that kills outright, go through the shield. Crashes hurt it too, as [described above](#crashes). It drops its item when it breaks, and nothing at all when a creative player hits it.
 
